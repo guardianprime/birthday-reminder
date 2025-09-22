@@ -4,22 +4,69 @@
     <meta charset="utf-8" />
     <title>Add Birthday</title>
   </head>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    form div {
+      margin-bottom: 0.5rem;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+    }
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #007bff;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
   <body>
-    <h1>Add Birthday</h1>
-    <form method="post" action="/add">
-      <div>
-        <label>Name: <input name="name" required /></label>
-      </div>
-      <div>
-        <label>Date: <input type="date" name="date" required /></label>
-      </div>
-      <div>
-        <label>Email (optional): <input type="email" name="email" /></label>
-      </div>
-      <div>
-        <button type="submit">Add</button>
-        <a href="/">Cancel</a>
-      </div>
-    </form>
+    <div class="container">
+      <h1>Add Birthday</h1>
+      <form method="post" action="/add">
+        <div>
+          <label for="name"
+            >Name: <input name="name" required id="name"
+          /></label>
+        </div>
+        <div>
+          <label for="date"
+            >Date: <input type="date" name="date" required id="date"
+          /></label>
+        </div>
+        <div>
+          <label for="email"
+            >Email: <input type="email" name="email" required id="email"
+          /></label>
+        </div>
+        <div>
+          <button type="submit">Add</button>
+          <a href="/">Cancel</a>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
