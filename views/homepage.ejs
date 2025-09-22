@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Birthday Reminder App</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Birthday Reminder App</h1>
+
+    <div id="signupForm">
+      <%= include('signup.ejs') %>
+      <p>
+        Already have an account? <a href="#" onclick="showLogin()">Log in</a>
+      </p>
+    </div>
+
+    <div id="loginForm" class="hidden">
+      <%= include('login.ejs') %>
+      <p>
+        Don’t have an account? <a href="#" onclick="showSignup()">Sign up</a>
+      </p>
+    </div>
+
+    <script>
+      function showLogin() {
+        document.getElementById("signupForm").classList.add("hidden");
+        document.getElementById("loginForm").classList.remove("hidden");
+      }
+
+      function showSignup() {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("signupForm").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

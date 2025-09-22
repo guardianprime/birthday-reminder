@@ -1,5 +1,3 @@
-const fs = require("fs");
-const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const nodeCron = require("node-cron");
@@ -9,57 +7,12 @@ dotenv.config();
 
 const app = express();
 
-const DATA_DIR = path.join(__dirname, "data");
-const DATA_FILE = path.join(DATA_DIR, "birthdays.json");
-
-// ensure data directory and file exist
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]", "utf8");
-
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-
-function readBirthdays() {
-  try {
-    const raw = fs.readFileSync(DATA_FILE, "utf8");
-    return JSON.parse(raw || "[]");
-  } catch (err) {
-    console.error("Failed to read data file", err);
-    return [];
-  }
-}
-
-function writeBirthdays(list) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(list, null, 2), "utf8");
-}
 
 app.get("/", (req, res) => {
   const list = readBirthdays();
-  res.render("index", { birthdays: list });
-});
-
-app.get("/add", (req, res) => {
-  res.render("add");
-});
-
-app.post("/add", (req, res) => {
-  const { name, date, email } = req.body;
-  if (!name || !date) {
-    return res.status(400).send("Name and date are required");
-  }
-  const list = readBirthdays();
-  list.push({ id: Date.now(), name, date, email: email || null });
-  writeBirthdays(list);
-  res.redirect("/");
-});
-
-app.post("/delete/:id", (req, res) => {
-  const id = Number(req.params.id);
-  let list = readBirthdays();
-  list = list.filter((b) => b.id !== id);
-  writeBirthdays(list);
-  res.redirect("/");
+  res.render("homepage");
 });
 
 // Setup email transporter if SMTP variables exist
