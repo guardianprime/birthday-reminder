@@ -26,38 +26,6 @@
   </head>
   <body>
     <h1>Birthday Reminder</h1>
-    <p><a href="/add">Add a birthday</a></p>
-    <% if (birthdays.length===0) { %>
-    <p>No birthdays saved yet.</p>
-    <% } else { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% birthdays.forEach(b => { %>
-        <tr>
-          <td><%= b.name %></td>
-          <td><%= b.date %></td>
-          <td><%= b.email || '-' %></td>
-          <td>
-            <form
-              method="post"
-              action="/delete/<%= b.id %>"
-              onsubmit="return confirm('Delete this entry?')"
-            >
-              <button type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-    <% } %>
+    <p><a href="/birthday/add">Add a birthday</a></p>
   </body>
 </html>

@@ -1,6 +1,7 @@
 const birthdayRoutes = require("express").Router();
 
 birthdayRoutes.get("/add", (req, res) => {
+  console.log("working!!");
   res.render("add");
 });
 
@@ -22,3 +23,5 @@ birthdayRoutes.post("/delete/:id", (req, res) => {
   writeBirthdays(list);
   res.redirect("/");
 });
+
+module.exports = birthdayRoutes;

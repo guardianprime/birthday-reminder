@@ -10,6 +10,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/birthday", require("./routes/birthdayRoutes"));
+
 app.get("/", (req, res) => {
   res.render("homepage");
 });
