@@ -13,14 +13,14 @@
     <h1>Welcome to the Birthday Reminder App</h1>
 
     <div id="signupForm">
-      <%= include('signup.ejs') %>
+      <%- include('signup.ejs') %>
       <p>
         Already have an account? <a href="#" onclick="showLogin()">Log in</a>
       </p>
     </div>
 
     <div id="loginForm" class="hidden">
-      <%= include('login.ejs') %>
+      <%- include('login.ejs') %>
       <p>
         Don’t have an account? <a href="#" onclick="showSignup()">Sign up</a>
       </p>

@@ -11,7 +11,6 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  const list = readBirthdays();
   res.render("homepage");
 });
 
@@ -51,8 +50,8 @@ function sendReminder(birthday) {
     .catch((err) => console.error("Failed to send reminder", err));
 }
 
-// Cron job: run every day at 08:00
-nodeCron.schedule("0 8 * * *", () => {
+// Cron job: run every day at 07:00
+nodeCron.schedule("0 7 * * *", () => {
   const list = readBirthdays();
   const today = new Date();
   const mmdd = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(
