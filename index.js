@@ -2,10 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 const nodeCron = require("node-cron");
 const nodemailer = require("nodemailer");
+const { connectToMongoDB } = require("./db");
 
 dotenv.config();
 
 const app = express();
+connectToMongoDB();
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
