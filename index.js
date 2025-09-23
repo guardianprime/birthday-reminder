@@ -5,9 +5,9 @@ const nodemailer = require("nodemailer");
 const { connectToMongoDB } = require("./db");
 
 dotenv.config();
+connectToMongoDB();
 
 const app = express();
-connectToMongoDB();
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +17,10 @@ app.use("/birthday", require("./routes/birthdayRoutes"));
 
 app.get("/", (req, res) => {
   res.render("homepage");
+});
+
+app.get("/index", (req, res) => {
+  res.render("index");
 });
 
 // Setup email transporter if SMTP variables exist
@@ -78,4 +82,7 @@ nodeCron.schedule("0 7 * * *", () => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});

@@ -7,14 +7,17 @@ const birthdaySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    dateOfBirth: {
+    email: {
+      type: String,
+      required: true,
+    },
+    date: {
       type: Date,
       required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // Link to the User model
-      required: true,
     },
   },
   { timestamps: true }
